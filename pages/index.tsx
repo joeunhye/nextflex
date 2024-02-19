@@ -1,9 +1,21 @@
+import Banner from "@/components/Banner";
 import Header from "@/components/Header";
+import { Movie } from "@/typings";
 import requests from "@/utils/requests";
+import { NextPage } from "next";
 import Head from "next/head";
 
-export default function Home({topRated, sf, drama, fantasy, comedy, action }) {
-  console.log(topRated)
+interface Props {
+  original: Movie[],
+  topRated: Movie[],
+  sf: Movie[],
+  drama: Movie[],
+  fantasy: Movie[],
+  comedy: Movie[],
+  action: Movie[],
+}
+
+const Home: NextPage<Props> = ({original, topRated, sf, drama, fantasy, comedy, action } : Props) => {
   return (
     <div className="relative h-screen bg-gradient-to-b from-[#333] to-[#141414]">
       <Head>
@@ -13,7 +25,7 @@ export default function Home({topRated, sf, drama, fantasy, comedy, action }) {
       <Header />
 
       <main>
-        {/* Banner */}
+        <Banner original={original} />
         <section>
 
         </section>
@@ -30,11 +42,12 @@ export const getServerSideProps = async () => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMGM3MjY2ODQ0NDZmYmVjZjJmMDRiZTJjMWYzYTBhOCIsInN1YiI6IjY1Y2RjNzNmYTNiNWU2MDE4NTJjNzQ0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.rBC59v9K3SHEx9JsC-m5wSQuvJVHYH9hdUw7Cv_cYto'
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
     }
   };
 
-  const [top, sf, drama, fantasy, comedy, action] = await Promise.all([
+  const [original, top, sf, drama, fantasy, comedy, action] = await Promise.all([
+    fetch(requests.top, options).then(res => res.json()),
     fetch(requests.top, options).then(res => res.json()),
     fetch(requests.sf, options).then(res => res.json()),
     fetch(requests.drama, options).then(res => res.json()),
@@ -45,6 +58,7 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
+      original: top.results,
       topRated: top.results,
       sf: sf.results,
       drama: drama.results,
@@ -54,3 +68,5 @@ export const getServerSideProps = async () => {
     }
   }
 }
+
+export default Home;

@@ -2,6 +2,7 @@
 const BASE_UEL = 'https://api.themoviedb.org/3'
 
 const requests = {
+    original: `${BASE_UEL}/movie/top_rated?language=en-US&with_networks=213`,
     top: `${BASE_UEL}/movie/top_rated?language=en-US&page=1`,
     sf: `${BASE_UEL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=878`,
     drama: `${BASE_UEL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=18`,
