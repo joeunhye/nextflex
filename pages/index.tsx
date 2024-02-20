@@ -29,6 +29,11 @@ const Home: NextPage<Props> = ({original, topRated, sf, drama, fantasy, comedy, 
         <Banner original={original} />
         <section>
           <Row title='Top Rated' movies={topRated} />
+          <Row title='Science Fiction' movies={sf} />
+          <Row title='Drama' movies={drama} />
+          <Row title='Fantasy' movies={fantasy} />
+          <Row title='Comedy' movies={comedy} />
+          <Row title='Action' movies={action} />
         </section>
       </main>
 
