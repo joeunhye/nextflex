@@ -1,5 +1,6 @@
 import Banner from "@/components/Banner";
 import Header from "@/components/Header";
+import Row from "@/components/Row";
 import { Movie } from "@/typings";
 import requests from "@/utils/requests";
 import { NextPage } from "next";
@@ -24,10 +25,10 @@ const Home: NextPage<Props> = ({original, topRated, sf, drama, fantasy, comedy, 
       
       <Header />
 
-      <main>
+      <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
         <Banner original={original} />
         <section>
-
+          <Row title='Top Rated' movies={topRated} />
         </section>
       </main>
 
