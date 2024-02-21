@@ -19,6 +19,7 @@ function Banner({original} : Props) {
         <section className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
             <div className="absolute top-0 left-0 z-[1] h-[95vh] w-[100%]">
                 <Image src={`${baseURL}original/${Movie?.backdrop_path || Movie?.poster_path}`} alt={`${Movie?.title}`} fill quality={75} priority className="object-cover" />
+                <div className="absolute top-0 left-0 z-[5] w-[100%] h-[100%] bg-gradient1"></div>
             </div>
             <h1 className="relative z-10 text-2xl font-bold md:text-4xl lg:text-7xl drop-shadow">{Movie?.title || Movie?.name || Movie?.original_title}</h1>
             <p className="relative z-10 text-xs max-w-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">{Movie?.overview}</p>

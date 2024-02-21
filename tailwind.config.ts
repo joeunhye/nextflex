@@ -9,12 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
+        'gradient1': 'linear-gradient(to bottom, rgba(20,20,20,0), rgba(20,20,20,1))',
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar'), require('tailwind-scrollbar-hide')],
+  variants: {
+    scrollbar: ['rounded']
+  }
 }
 export default config

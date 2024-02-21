@@ -12,7 +12,7 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
   return (
-    <header className={`transition-colors duration-[.5s] ${Scrolled && 'bg-[#000]'}`}>
+    <header className={`transition-colors duration-[.5s] ${Scrolled && 'bg-[#000000]'}`}>
         <div className="flex items-center space-x-2 md:space-x-10">
           <img src="https://rb.gy/ulxxee" alt="logo" width={100} height={100} className="cursor-pointer" />
           <ul className="hidden space-x-4 md:flex">
