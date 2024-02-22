@@ -10,6 +10,7 @@ const nextConfig = {
         hostname: 'image.tmdb.org',
       },
     ],
+    domains: ['image.tmdb.org', 'rb.gy'],
   },
   // images: { loader: "default", minimumCacheTTL: 60, domains: [ "image.tmdb.org" ], }
 }
