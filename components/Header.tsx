@@ -1,4 +1,5 @@
 import useAuth from "@/hooks/useAuth";
+import Link from "next/link";
 import {useState, useEffect} from 'react';
 import { FaBell, FaSearch, FaUserCircle } from "react-icons/fa";
 
@@ -15,7 +16,7 @@ function Header() {
   return (
     <header className={`transition-colors duration-[.5s] ${Scrolled && 'bg-[#000000]'}`}>
         <div className="flex items-center space-x-2 md:space-x-10">
-          <img src="https://rb.gy/ulxxee" alt="logo" width={100} height={100} className="cursor-pointer" />
+          <Link href={'/'}><img src="https://rb.gy/ulxxee" alt="logo" width={100} height={100} className="cursor-pointer" /></Link>
           <ul className="hidden space-x-4 md:flex">
               <li className="headerLink">Home</li>
               <li className="headerLink">TV Show</li>

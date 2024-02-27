@@ -1,6 +1,7 @@
 import useAuth from "@/hooks/useAuth"
 import Head from "next/head"
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 
@@ -37,7 +38,7 @@ function login() {
             </Head>
             {/* https://rb.gy/ulxxee */}
             <Image src='https://rb.gy/p2hphi' fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={80} className="opacity-60 hidden sm:inline object-cover" priority alt="Login" />
-            <img src="https://rb.gy/ulxxee" alt="logo" width={150} height={150} className="absolute left-5 top-5 cursor-pointer object-contain md:left-10 md:top-6" />
+            <Link href={'/'}><img src="https://rb.gy/ulxxee" alt="logo" width={150} height={150} className="absolute left-5 top-5 cursor-pointer object-contain md:left-10 md:top-6" /></Link>
 
             <form className="relative z-2 mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14" onSubmit={handleSubmit(join)}>
                 <h1 className="text-4xl font-semibold">Sign In</h1>

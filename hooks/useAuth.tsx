@@ -46,6 +46,7 @@ export const AuthProvider = ({children} : AuthProviderProps) => {
                 setUser(null);
                 setLoading(true);
                 router.push('/login')
+                console.log('onAuthStateChanged')
             }
 
             setInitialLoading(false)
@@ -95,8 +96,7 @@ export const AuthProvider = ({children} : AuthProviderProps) => {
 
     // useMemo를 이용하여 user, loading값이 바뀔 때만 각 함수 및 정보를 객체로 묶어서 내보냄
     const memoedValue = useMemo(() => ({user, loading, error, signUp, signIn, logout}), [user, loading]);
-
-    return <AuthContext.Provider value={memoedValue}>{!initialLoading && children}</AuthContext.Provider>
+    return <AuthContext.Provider value={memoedValue}>{!initialLoading ? children : <p className='fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-[10vw] text-white'>Loading...</p>}</AuthContext.Provider>
 }
 
 export default function useAuth() {
