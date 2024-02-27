@@ -1,9 +1,10 @@
-import Link from "next/link";
+import useAuth from "@/hooks/useAuth";
 import {useState, useEffect} from 'react';
 import { FaBell, FaSearch, FaUserCircle } from "react-icons/fa";
 
 function Header() {
   const [Scrolled, setScrolled] = useState(false)
+  const { logout } = useAuth();
   useEffect(() => {
     const handleScroll = () => window.scrollY > 0 ? setScrolled(true) : setScrolled(false)
 
@@ -28,9 +29,7 @@ function Header() {
           <FaSearch className="w-6" />
           <p className="hidden lg:inline">Kids</p>
           <FaBell className="w-6" />
-          <Link href={"/"}>
-            <FaUserCircle className="w-6" />
-          </Link>
+          <FaUserCircle className="w-6 cursor-pointer" onClick={logout} />
         </div>
     </header>
   )

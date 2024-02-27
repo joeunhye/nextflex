@@ -1,3 +1,4 @@
+import useAuth from "@/hooks/useAuth"
 import Head from "next/head"
 import Image from "next/image"
 import { useState } from "react"
@@ -10,7 +11,8 @@ interface Inputs {
 
 function login() {
     const [Login, setLogin] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+    const { signUp, signIn } = useAuth();
     // register : 원하는 인풋 요소에 전개연산자로 등록해서 값 관리
     // handleSubmit : 해당 훅 전용 전송 이벤트 핸들러
     // formState : register로 등록된 값이 올바르지 않으면 에러 반환
@@ -20,10 +22,10 @@ function login() {
         console.log(email, password)
         if(Login) {
             // 만약 클릭한 버튼이 로그인 버튼이면 firebase에 로그인 처리를 해주는 함수 호출
-            // await signIn(email, password);
+            await signIn(email, password);
         }else {
             // 로그인 버튼이 아니면 회원가입 등록 함수 호출
-            // await signUp(email, password);
+            await signUp(email, password);
         }
     }
 

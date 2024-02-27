@@ -82,7 +82,7 @@ export const AuthProvider = ({children} : AuthProviderProps) => {
         .finally(() => setLoading(false))
     }
 
-    const logout =  async () => {
+    const logout = async () => {
         setLoading(true);
         await signOut(auth).then(() => {
             setUser(null)
