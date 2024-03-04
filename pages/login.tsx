@@ -2,7 +2,7 @@ import useAuth from "@/hooks/useAuth"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 
 interface Inputs {
@@ -12,6 +12,7 @@ interface Inputs {
 
 function login() {
     const [Login, setLogin] = useState(false);
+    const ref = useRef<any>(null);
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const { signUp, signIn } = useAuth();
     // register : 원하는 인풋 요소에 전개연산자로 등록해서 값 관리
@@ -37,7 +38,9 @@ function login() {
                 {/* <link rel="stylesheet" href="favicon.ico" type="image/x-icon" /> */}
             </Head>
             {/* https://rb.gy/ulxxee */}
-            <Image src='https://rb.gy/p2hphi' fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={80} className="opacity-60 hidden sm:inline object-cover" priority alt="Login" />
+            <Image src='https://rb.gy/p2hphi' fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={80} className="opacity-60 hidden sm:inline object-cover"  alt="Login" onLoadingComplete={() => ref.current.remove()} />
+            {/* image loading bar */}
+            <div className="w-[30px] h-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] border-[4px] border-solid border-[orange] rounded-[50%] border-t-[transparent] border-l-[transparent] z-10 animate-ani-rotation" ref={ref}></div>
             <Link href={'/'}><img src="https://rb.gy/ulxxee" alt="logo" width={150} height={150} className="absolute left-5 top-5 cursor-pointer object-contain md:left-10 md:top-6" /></Link>
 
             <form className="relative z-2 mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14" onSubmit={handleSubmit(join)}>

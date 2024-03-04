@@ -1,7 +1,7 @@
 import { baseURL } from "@/constants/movie";
 import { Movie } from "@/typings";
 import Image from "next/image";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaPlay, FaInfoCircle } from "react-icons/fa";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 
 function Banner({original} : Props) {
     const [Movie, setMovie] = useState<Movie | null>(null)
+    const ref = useRef<any>(null);
 
     useEffect(() => {
         setMovie(original[Math.floor(Math.random()*original.length)])
@@ -18,7 +19,10 @@ function Banner({original} : Props) {
     return (
         <section className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
             <div className="absolute top-0 left-0 z-[1] h-[95vh] w-[100%]">
-                <Image src={`${baseURL}original/${Movie?.backdrop_path || Movie?.poster_path}`} alt={`${Movie?.title}`} fill quality={75} priority className="object-cover" />
+                <Image src={`${baseURL}original/${Movie?.backdrop_path || Movie?.poster_path}`} alt={`${Movie?.title}`} fill quality={75} className="object-cover"
+                onLoadingComplete={() => ref.current.remove()} />
+                {/* image loading bar */}
+                <div className="w-[30px] h-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] border-[4px] border-solid border-[orange] rounded-[50%] border-t-[transparent] border-l-[transparent] z-10 animate-ani-rotation" ref={ref}></div>
                 <div className="absolute top-0 left-0 z-[5] w-[100%] h-[100%] bg-gradient1"></div>
             </div>
             <h1 className="relative z-10 text-2xl font-bold md:text-4xl lg:text-7xl drop-shadow">{Movie?.title || Movie?.name || Movie?.original_title}</h1>

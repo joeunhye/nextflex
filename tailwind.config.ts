@@ -14,6 +14,15 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      keyframes: {
+        rotation: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        }
+      },
+      animation: {
+        'ani-rotation': 'rotation 1s linear infinite',
+      }
     },
   },
   plugins: [require('tailwind-scrollbar'), require('tailwind-scrollbar-hide')],
