@@ -3,6 +3,8 @@ import { Movie } from "@/typings";
 import Image from "next/image";
 import { useState, useEffect, useRef } from 'react';
 import { FaPlay, FaInfoCircle } from "react-icons/fa";
+import { modalState } from "@/atoms/globalAtom";
+import {useRecoilState} from 'recoil';
 
 interface Props {
     original: Movie[],
@@ -11,6 +13,7 @@ interface Props {
 function Banner({original} : Props) {
     const [Movie, setMovie] = useState<Movie | null>(null)
     const ref = useRef<any>(null);
+    const [showModal, setShowModal] = useRecoilState(modalState);
 
     useEffect(() => {
         setMovie(original[Math.floor(Math.random()*original.length)])
@@ -30,7 +33,7 @@ function Banner({original} : Props) {
 
             <div className="flex space-x-3 z-10 relative">
                 <button className="bannerButton bg-white text-black"><FaPlay className="w-4 text-black md:w-7" /> Play</button>
-                <button className="bannerButton bg-[gray]/70 text-black"><FaInfoCircle className="w-5 text-black md:w-8" /> Info</button>
+                <button className="bannerButton bg-[gray]/70 text-white" onClick={() => setShowModal(true)}><FaInfoCircle className="w-5 md:w-8" /> Info</button>
             </div>
         </section>
     )

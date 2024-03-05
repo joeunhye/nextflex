@@ -1,10 +1,13 @@
 import Banner from "@/components/Banner";
 import Header from "@/components/Header";
+import Modal from "@/components/Modal";
 import Row from "@/components/Row";
 import { Movie } from "@/typings";
 import requests from "@/utils/requests";
 import { NextPage } from "next";
 import Head from "next/head";
+import { modalState } from "@/atoms/globalAtom";
+import {useRecoilValue} from 'recoil';
 
 interface Props {
   original: Movie[],
@@ -17,6 +20,7 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({original, topRated, sf, drama, fantasy, comedy, action } : Props) => {
+  const showModal = useRecoilValue(modalState);
   return (
     <div className="relative h-screen bg-gradient-to-b from-[#333] to-[#141414]">
       <Head>
@@ -36,6 +40,8 @@ const Home: NextPage<Props> = ({original, topRated, sf, drama, fantasy, comedy, 
           <Row title='Action' movies={action} />
         </section>
       </main>
+
+      {showModal && <Modal />}
 
     </div>
   )
