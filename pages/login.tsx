@@ -41,7 +41,6 @@ function Login() {
 				<title>Nextflix Member</title>
 				{/* <link rel="stylesheet" href="favicon.ico" type="image/x-icon" /> */}
 			</Head>
-			{/* https://rb.gy/ulxxee */}
 			<Image src="https://rb.gy/p2hphi" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={80} className="opacity-60 hidden sm:inline object-cover" alt="Login" onLoadingComplete={() => ref.current.remove()} />
 			{/* image loading bar */}
 			<div
